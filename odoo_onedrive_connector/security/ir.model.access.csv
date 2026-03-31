@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_onedrive_configure_user,access.one_drive.config.user,model_one_drive_config,,1,1,1,1
+access_onedrive_configure_history_user,access.one_drive.history,model_one_drive_history,,1,1,1,1

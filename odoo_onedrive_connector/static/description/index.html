@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>OneDrive Integration for Odoo 18</title>
+</head>
+
+<body style="font-family: 'Segoe UI', Arial; margin:0; background:#f4f7fb; color:#2d3748;">
+
+<!-- HERO -->
+<div style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); color:white; padding:60px 20px; text-align:center;">
+<h1 style="margin:0; font-size:34px;color: white"><b>Microsoft OneDrive Integration for Odoo 18</b></h1>
+<p style="font-size:16px; margin-top:10px;">Enterprise-Grade Automatic Cloud File Synchronization</p>
+
+<div style="margin-top:15px;">
+<span style="display:inline-block; padding:6px 14px; border-radius:20px; background:#ffffff20; margin:5px;">Odoo 18</span>
+<span style="display:inline-block; padding:6px 14px; border-radius:20px; background:#ffffff20; margin:5px;">Community</span>
+<span style="display:inline-block; padding:6px 14px; border-radius:20px; background:#ffffff20; margin:5px;">Enterprise</span>
+<span style="display:inline-block; padding:6px 14px; border-radius:20px; background:#ffffff20; margin:5px;">Odoo.sh</span>
+<span style="display:inline-block; padding:6px 14px; border-radius:20px; background:#ffffff20; margin:5px;">Multi-User</span>
+<span style="display:inline-block; padding:6px 14px; border-radius:20px; background:#ffffff20; margin:5px;">OAuth2 Secure</span>
+<span style="display:inline-block; padding:6px 14px; border-radius:20px; background:#ffffff20; margin:5px;">Auto Upload</span>
+</div>
+
+    <p style="margin-top:18px; font-size:14px; opacity:0.85; letter-spacing:0.5px;">
+<span style="border-top:1px solid #ffffff40; padding-top:10px; display:inline-block;">
+— Crafted by <span style="font-weight:600;">Jagadish Magesh</span>
+</span>
+</p>
+
+</div>
+<div style="padding:30px; max-width:1100px; margin:auto;">
+
+<!-- OVERVIEW -->
+<div style="background:white; padding:25px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05); margin-bottom:25px;">
+<h2 style="color:#0b5394;">Overview</h2>
+
+<p>This module integrates Odoo with Microsoft OneDrive to automatically upload attachments from any Odoo model to cloud storage. Each user can securely connect their own OneDrive account using OAuth2 authentication.</p>
+
+<div style="background:#e8f5e9; padding:15px; border-left:5px solid #2e7d32; border-radius:6px;">
+<strong>Business Value:</strong>
+<ul>
+<li>Automatic cloud backup</li>
+<li>Secure document storage</li>
+<li>Centralized file management</li>
+<li>Enterprise-ready architecture</li>
+<li>Zero manual upload effort</li>
+</ul>
+</div>
+</div>
+
+<div style="background:white; padding:25px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05); margin-bottom:25px;">
+
+<h2 style="color:#0b5394; margin-bottom:20px;">Key Features</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<!-- AUTO UPLOAD -->
+<div style="flex:1; min-width:280px; background:#f9fbff; border-radius:10px; padding:20px; border-top:4px solid #0b5394;">
+<h3 style="margin-top:0; color:#0b5394;">Automatic Upload</h3>
+<ul style="padding-left:18px;">
+<li style="margin-bottom:10px;">Files uploaded instantly when attachments are created</li>
+<li style="margin-bottom:10px;">Works with all Odoo models</li>
+<li style="margin-bottom:10px;">No manual action required</li>
+</ul>
+</div>
+
+<!-- MULTI USER -->
+<div style="flex:1; min-width:280px; background:#f9fff9; border-radius:10px; padding:20px; border-top:4px solid #2e7d32;">
+<h3 style="margin-top:0; color:#2e7d32;">Multi-User Support</h3>
+<ul style="padding-left:18px;">
+<li style="margin-bottom:10px;">Each user can connect their own OneDrive account</li>
+<li style="margin-bottom:10px;">Separate configuration per user</li>
+<li style="margin-bottom:10px;">Secure access isolation</li>
+</ul>
+</div>
+
+<!-- LARGE FILE -->
+<div style="flex:1; min-width:280px; background:#f5f7ff; border-radius:10px; padding:20px; border-top:4px solid #1e3c72;">
+<h3 style="margin-top:0; color:#1e3c72;">Large File Support</h3>
+<ul style="padding-left:18px;">
+<li style="margin-bottom:10px;">Supports files greater than 4MB</li>
+<li style="margin-bottom:10px;">Uses upload session mechanism</li>
+<li style="margin-bottom:10px;">Reliable enterprise file transfer</li>
+</ul>
+</div>
+
+</div>
+</div>
+<div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:25px;">
+
+<!-- ARCHITECTURE -->
+<div style="flex:1; min-width:320px; background:white; padding:25px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+
+<h2 style="color:#0b5394; margin-top:0;">Architecture Diagram</h2>
+
+<div style="background:#1a202c; color:#68d391; padding:20px; border-radius:10px; font-family:monospace; font-size:13px; line-height:1.6;">
++---------------------+<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Odoo User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
++----------+----------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v<br>
++---------------------+<br>
+|&nbsp;&nbsp;Odoo Attachment&nbsp;&nbsp;|<br>
++----------+----------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v<br>
++---------------------+<br>
+|&nbsp;&nbsp;OneDrive Module&nbsp;&nbsp;|<br>
++----------+----------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v<br>
++---------------------+<br>
+| Microsoft Graph API |<br>
++----------+----------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v<br>
++---------------------+<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OneDrive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
++---------------------+
+</div>
+
+</div>
+
+<!-- SEQUENCE -->
+<div style="flex:1; min-width:320px; background:white; padding:25px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+
+<h2 style="color:#0b5394; margin-top:0;">Sequence Flow Diagram</h2>
+
+<div style="background:#1a202c; color:#fbd38d; padding:20px; border-radius:10px; font-family:monospace; font-size:13px; line-height:1.6;">
+User uploads file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;v<br>
+Odoo creates attachment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;v<br>
+Check OneDrive configuration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;v<br>
+Validate access token<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;v<br>
+Upload file to OneDrive<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;v<br>
+Save upload history
+</div>
+
+</div>
+
+</div>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:40px;">
+
+<!-- DEPLOYMENT -->
+<div style="flex:1; min-width:300px; background:white; border-radius:12px; padding:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); border-top:4px solid #0b5394;">
+<h2 style="color:#0b5394; margin-top:0;">Deployment Checklist</h2>
+
+<ul style="padding-left:18px;">
+<li style="margin-bottom:10px;">Register application in Azure Portal</li>
+<li style="margin-bottom:10px;">Configure Redirect URI</li>
+<li style="margin-bottom:10px;">Add Microsoft Graph permissions</li>
+<li style="margin-bottom:10px;">Generate client secret</li>
+<li style="margin-bottom:10px;">Install Odoo module</li>
+<li style="margin-bottom:10px;">Create OneDrive configuration</li>
+<li style="margin-bottom:10px;">Assign configuration to user</li>
+<li style="margin-bottom:10px;">Upload test attachment</li>
+</ul>
+</div>
+
+<!-- PERFORMANCE -->
+<div style="flex:1; min-width:300px; background:white; border-radius:12px; padding:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); border-top:4px solid #2e7d32;">
+<h2 style="color:#2e7d32; margin-top:0;">Performance Considerations</h2>
+
+<ul style="padding-left:18px;">
+<li style="margin-bottom:10px;">Large files handled using upload sessions</li>
+<li style="margin-bottom:10px;">Automatic token refresh prevents failures</li>
+<li style="margin-bottom:10px;">Timeout protection implemented</li>
+<li style="margin-bottom:10px;">Minimal performance impact on Odoo</li>
+<li style="margin-bottom:10px;">Designed for enterprise scalability</li>
+</ul>
+</div>
+
+<!-- BENEFITS -->
+<div style="flex:1; min-width:300px; background:white; border-radius:12px; padding:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); border-top:4px solid #1e3c72;">
+<h2 style="color:#1e3c72; margin-top:0;">Benefits</h2>
+
+<ul style="padding-left:18px;">
+<li style="margin-bottom:10px;">Automatic cloud backup</li>
+<li style="margin-bottom:10px;">No manual upload required</li>
+<li style="margin-bottom:10px;">Secure document storage</li>
+<li style="margin-bottom:10px;">Centralized file management</li>
+<li style="margin-bottom:10px;">Multi-user support</li>
+<li style="margin-bottom:10px;">Enterprise-ready solution</li>
+<li style="margin-bottom:10px;">Reliable file synchronization</li>
+<li style="margin-bottom:10px;">Full upload tracking and monitoring</li>
+</ul>
+</div>
+
+</div>
+
+
+<h2 style="color:#0b5394; margin-top:40px;">How This Module Works</h2>
+
+<p style="font-size:15px; line-height:1.6;">
+This module automatically sends attachments from Odoo to Microsoft OneDrive. When a user uploads any file (invoice, sale order, purchase order, HR document, etc.), the system checks whether that user has a configured OneDrive account. If the configuration exists and the connection is active, the file is securely uploaded to the configured OneDrive folder using Microsoft Graph API.
+</p>
+
+<ul>
+<li style="margin-bottom:8px;">User uploads attachment in any Odoo model</li>
+<li style="margin-bottom:8px;">System detects attachment creation</li>
+<li style="margin-bottom:8px;">System checks user OneDrive configuration</li>
+<li style="margin-bottom:8px;">System validates access token</li>
+<li style="margin-bottom:8px;">File is uploaded to configured OneDrive folder</li>
+<li style="margin-bottom:8px;">Upload status is saved in history log</li>
+</ul>
+
+
+<h2 style="color:#0b5394; margin-top:40px;">Screenshots</h2>
+
+<h2 style="color:#0b5394; margin-top:40px;">Complete Step-by-Step Configuration</h2>
+
+<h3 style="margin-top:20px;">Step 1: Register Application in Azure Portal</h3>
+
+<ul>
+<li style="margin-bottom:8px;">Login to Microsoft Azure Portal</li>
+<li style="margin-bottom:8px;">Navigate to Azure Active Directory</li>
+<li style="margin-bottom:8px;">Open App Registrations</li>
+    <img src="./assets/screenshots/az_1.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Click New Registration</li>
+<li style="margin-bottom:8px;">Enter application name</li>
+<li style="margin-bottom:8px;">Select account type</li>
+<li style="margin-bottom:8px;">Register the application</li>
+
+    <img src="./assets/screenshots/az_2.png" class="img-fluid mb-3">
+    <img src="./assets/screenshots/az_3.png" class="img-fluid mb-3">
+
+</ul>
+
+<h3 style="margin-top:20px;">Step 2: Configure Redirect URI</h3>
+<ul>
+<li style="margin-bottom:8px;">Go to Authentication section</li>
+<li style="margin-bottom:8px;">Add Redirect URI</li>
+<li style="margin-bottom:8px;">Redirect URI must be:</li>
+</ul>
+
+<div style="background:#f4f4f4; padding:10px; border-radius:6px; margin-top:10px;">
+https://your-domain.com/onedrive/authentication
+</div>
+        <img src="./assets/screenshots/az_4.png" class="img-fluid mb-3">
+
+
+<h3 style="margin-top:20px;">Step 3: Create Client Secret</h3>
+
+<ul>
+<li style="margin-bottom:8px;">Go to Certificates & Secrets</li>
+<li style="margin-bottom:8px;">Click New Client Secret</li>
+<li style="margin-bottom:8px;">Copy the Secret VALUE</li>
+<li style="margin-bottom:8px;">Do NOT use Secret ID</li>
+</ul>
+
+<h3 style="margin-top:20px;">Step 4: Configure API Permissions</h3>
+
+<ul>
+<li style="margin-bottom:8px;">Open API Permissions</li>
+<li style="margin-bottom:8px;">Add Microsoft Graph Permissions</li>
+<li style="margin-bottom:8px;">Required permissions:</li>
+</ul>
+
+<div style="background:#f4f4f4; padding:10px; border-radius:6px; margin-top:10px;">
+offline_access
+openid
+Files.ReadWrite.All
+User.Read.All
+</div>
+
+<h3 style="margin-top:20px;">Step 5: Configure in Odoo</h3>
+
+<ul>
+<li style="margin-bottom:8px;">Go to Settings</li>
+<li style="margin-bottom:8px;">Navigate to Technical</li>
+<li style="margin-bottom:8px;">Open OneDrive Configuration</li>
+    <img src="./assets/screenshots/az_23.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Create new configuration record</li>
+<li style="margin-bottom:8px;">Select the Responsible user</li>
+    <img src="./assets/screenshots/z1.jpg" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Enter Tenant ID</li>
+<li style="margin-bottom:8px;">Enter Client ID</li>
+<li style="margin-bottom:8px;">Enter Client Secret</li>
+    <img src="./assets/screenshots/j2.jpg" class="img-fluid mb-3">
+</ul>
+
+<h3 style="margin-top:20px;">Step 6: Get Authorization Code</h3>
+
+<ul>
+<li style="margin-bottom:8px;">Click Get Code button</li>
+    <img src="./assets/screenshots/j2.jpg" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Login to Microsoft account, Select OneDrive user So You will Get Code , access for Selected User Drive,</li>
+    <img src="./assets/screenshots/j3.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Grant permissions</li>
+    <img src="./assets/screenshots/od1.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">it will Generate the Code , Copy authorization code</li>
+    <img src="./assets/screenshots/ax_50.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Paste code into Odoo</li>
+    <img src="./assets/screenshots/j4.png" class="img-fluid mb-3">
+</ul>
+
+<h3 style="margin-top:20px;">Step 7: Get Access Token</h3>
+
+<ul>
+<li style="margin-bottom:8px;">Click Get Token button</li>
+<li style="margin-bottom:8px;">System generates access token</li>
+<li style="margin-bottom:8px;">System generates refresh token</li>
+<li style="margin-bottom:8px;">System sets token expiry</li>
+    <img src="./assets/screenshots/j5.png" class="img-fluid mb-3">
+</ul>
+
+<h3 style="margin-top:20px;">Step 8: Configure Drive and Folder</h3>
+<ul>
+<li style="margin-bottom:8px;">Click Get User ID</li>
+    <img src="./assets/screenshots/j6.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Copy returned User ID</li>
+    <img src="./assets/screenshots/j7.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Enter folder name</li>
+    <img src="./assets/screenshots/j9.png" class="img-fluid mb-3">
+    <img src="./assets/screenshots/j8.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Click Check Folders</li>
+<li style="margin-bottom:8px;">Copy driveId</li>
+<li style="margin-bottom:8px;">Copy Folder: ID</li>
+    <img src="./assets/screenshots/j10.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Save configuration</li>
+    <img src="./assets/screenshots/j11.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">After configuration Make Sure that In Appropirate User Form View In Account Security Tab OneDrive Configuration is Setuped With Correct User </li>
+    <img src="./assets/screenshots/jj12.png" class="img-fluid mb-3">
+    <img src="./assets/screenshots/jj13.png" class="img-fluid mb-3">
+</ul>
+
+<h2 style="color:#0b5394; margin-top:40px;">Usage Flow</h2>
+
+<h3 style="margin-top:20px;">Daily User Workflow</h3>
+
+<ul>
+<li style="margin-bottom:8px;">User creates record (Invoice, Sale Order, Purchase Order, Employee Document, etc.)</li>
+<li style="margin-bottom:8px;">User uploads attachment</li>
+    <img src="./assets/screenshots/jj14.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">System automatically uploads file to OneDrive</li>
+    <img src="./assets/screenshots/jj15.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">Upload status recorded in history</li>
+    <img src="./assets/screenshots/jj16.png" class="img-fluid mb-3">
+<li style="margin-bottom:8px;">User continues normal workflow</li>
+</ul>
+
+
+<h2 style="color:#0b5394; margin-top:40px;">How to Configure Multiple Users (Important)</h2>
+
+<p style="font-size:15px; line-height:1.7;">
+This module supports multiple users, and each user can connect their own Microsoft OneDrive account independently. The configuration is performed once per user. The system will automatically upload attachments to the OneDrive account that is linked to the user who created or uploaded the attachment.
+</p>
+
+<h3 style="margin-top:20px;">Step-by-Step: Configure OneDrive for Multiple Users</h3>
+
+<ul>
+<li style="margin-bottom:8px;"><strong>Create a separate OneDrive configuration record for each user.</strong> Do not share the same configuration between users unless they are intentionally using the same OneDrive account.</li>
+<li style="margin-bottom:8px;">Open Odoo and go to <strong>Settings → Technical → OneDrive Configuration</strong>.</li>
+<li style="margin-bottom:8px;">Click <strong>Create</strong> to create a new configuration.</li>
+<li style="margin-bottom:8px;">Select the <strong>Responsible User</strong>. This user will be linked to this OneDrive account.</li>
+<li style="margin-bottom:8px;">Enter the <strong>Tenant ID</strong>, <strong>Client ID</strong>, and <strong>Client Secret</strong> from the Azure application.</li>
+<li style="margin-bottom:8px;">Click <strong>Get Code</strong> and log in using the Microsoft account that belongs to this specific user.</li>
+<li style="margin-bottom:8px;">After authorization, copy the generated authorization code and paste it into the configuration.</li>
+<li style="margin-bottom:8px;">Click <strong>Get Token</strong> to generate the Access Token and Refresh Token.</li>
+<li style="margin-bottom:8px;">Click <strong>Get User ID</strong> to retrieve the Microsoft user identifier.</li>
+<li style="margin-bottom:8px;">Specify the target folder name where files will be uploaded in OneDrive.</li>
+<li style="margin-bottom:8px;">Click <strong>Check Folders</strong> to automatically fetch the Drive ID and Folder ID.</li>
+<li style="margin-bottom:8px;">Click <strong>Save</strong> to complete the configuration for this user.</li>
+</ul>
+
+<h3 style="margin-top:20px;">Important Validation Step</h3>
+
+<ul>
+<li style="margin-bottom:8px;">Open the <strong>User Form</strong> in Odoo.</li>
+<li style="margin-bottom:8px;">Navigate to the <strong>Account Security</strong> tab.</li>
+<li style="margin-bottom:8px;">Ensure the correct <strong>OneDrive Configuration</strong> is assigned to the user.</li>
+<li style="margin-bottom:8px;">Repeat the same configuration process for every additional user who needs OneDrive integration.</li>
+</ul>
+
+<h3 style="margin-top:20px;">Example Scenario</h3>
+
+<ul>
+<li style="margin-bottom:8px;">User A uploads an invoice attachment → File is uploaded to User A OneDrive.</li>
+<li style="margin-bottom:8px;">User B uploads a purchase document → File is uploaded to User B OneDrive.</li>
+<li style="margin-bottom:8px;">Each user maintains independent storage, permissions, and audit history.</li>
+</ul>
+
+
+    <!-- SERVICES -->
+<div style="text-align:center; margin:60px 0;">
+<h2 style="color:#1a202c; font-size:28px;">Our Odoo Services</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:30px;">
+
+<div style="flex:1; min-width:220px; max-width:250px; background:white; padding:25px; border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="assets/icons/cogs.png" width="50" style="margin-bottom:15px;">
+<h4 style="margin:0;">Customization</h4>
+</div>
+
+<div style="flex:1; min-width:220px; max-width:250px; background:white; padding:25px; border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="assets/icons/wrench.png" width="50" style="margin-bottom:15px;">
+<h4 style="margin:0;">Implementation</h4>
+</div>
+
+<div style="flex:1; min-width:220px; max-width:250px; background:white; padding:25px; border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="assets/icons/lifebuoy.png" width="50" style="margin-bottom:15px;">
+<h4 style="margin:0;">Support</h4>
+</div>
+
+<div style="flex:1; min-width:220px; max-width:250px; background:white; padding:25px; border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="assets/icons/puzzle.png" width="50" style="margin-bottom:15px;">
+<h4 style="margin:0;">Integration</h4>
+</div>
+
+</div>
+</div>
+
+<!-- RELATED PRODUCTS -->
+<div style="text-align:center; margin:60px 0;">
+<h2 style="color:#1a202c; font-size:28px;">Related Products</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:30px;">
+
+<a href="https://apps.odoo.com/apps/modules/18.0/custom_model_access_management" style="text-decoration:none; color:inherit;">
+<div style="width:260px; background:white; border-radius:14px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="./assets/screenshots/access_model.png" style="width:100%;">
+<div style="padding:15px;">
+<p style="margin:0; font-weight:600;">Access Management - Model/User Wise</p>
+</div>
+</div>
+</a>
+
+<a href="https://apps.odoo.com/apps/modules/16.0/hotel_reservation_dashboard" style="text-decoration:none; color:inherit;">
+<div style="width:260px; background:white; border-radius:14px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="./assets/screenshots/hb.gif" style="width:100%;">
+<div style="padding:15px;">
+<p style="margin:0; font-weight:600;">Hotel Reservation Dashboard</p>
+</div>
+</div>
+</a>
+
+<a href="https://apps.odoo.com/apps/modules/15.0/print_wizard" style="text-decoration:none; color:inherit;">
+<div style="width:260px; background:white; border-radius:14px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="./assets/screenshots/bdr.png" style="width:100%;">
+<div style="padding:15px;">
+<p style="margin:0; font-weight:600;">Big Data Reports</p>
+</div>
+</div>
+</a>
+
+<a href="https://apps.odoo.com/apps/modules/17.0/message_gateway" style="text-decoration:none; color:inherit;">
+<div style="width:260px; background:white; border-radius:14px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+<img src="./assets/screenshots/mssge_gty.gif" style="width:100%;">
+<div style="padding:15px;">
+<p style="margin:0; font-weight:600;">Message Gateway (Twilio, Nexmo…)</p>
+</div>
+</div>
+</a>
+
+</div>
+</div>
+
+<!-- CONTACT -->
+<div style="text-align:center; margin:60px 0;">
+<h2 style="color:#1a202c; font-size:28px;">Need Help?</h2>
+
+<div style="display:flex; flex-direction:column; align-items:center; gap:15px; margin-top:30px;">
+
+<a href="mailto:odoodevs8068@gmail.com" style="width:260px; text-decoration:none;">
+<div style="background:#1a202c; color:white; padding:12px; border-radius:10px; font-weight:500;">
+📧 Email Us
+</div>
+</a>
+
+<a href="https://wa.me/966542273082" style="width:260px; text-decoration:none;">
+<div style="background:#25D366; color:white; padding:12px; border-radius:10px; font-weight:500;">
+💬 WhatsApp (KSA)
+</div>
+</a>
+
+<a href="https://wa.me/919360353170" style="width:260px; text-decoration:none;">
+<div style="background:#25D366; color:white; padding:12px; border-radius:10px; font-weight:500;">
+💬 WhatsApp (India)
+</div>
+</a>
+
+</div>
+</div>
+
+</div>
+</body>
+</html>

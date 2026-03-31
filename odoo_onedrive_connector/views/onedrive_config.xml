@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="onedrive_configure_view_list" model="ir.ui.view">
+        <field name="name">onedrive_configure_view_list</field>
+        <field name="model">one_drive.config</field>
+        <field name="arch" type="xml">
+            <list >
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="client_secret"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="onedrive_configure_view_form" model="ir.ui.view">
+        <field name="name">onedrive_configure_view_form</field>
+        <field name="model">one_drive.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="make_connection" string="Get Code" type="object" class="btn btn-info" invisible="not active or (code and access_token and token_expiry)"/>
+                    <button name="get_access_token" string="Get Token" type="object" class="btn btn-primary" invisible="(not active or not code ) and access_token"/>
+                    <button name="revoke_access_token" string="Revoke Access Token" type="object" class="btn btn-success" invisible="not active"/>
+                    <button name="deactivate_configuration" string="Deactivate" type="object" class="btn btn-danger" invisible="not active"/>
+                    <button name="activate_configuration" string="Activate" type="object" class="btn btn-secondary" invisible="active"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Connected" bg_color="text-bg-success" invisible="drive_status != 'connected'"/>
+                    <widget name="web_ribbon" title="DisConnected" bg_color="text-bg-danger" invisible="drive_status != 'disconnected'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="drive_status" invisible="1"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="OneDrive Credentials" name="drive_creds">
+                            <group>
+                                <group string="Tenant Creds">
+                                    <field name="tenant_id"/>
+                                    <field name="client_id"/>
+                                    <field name="client_secret"/>
+                                    <field name="redirect_uri"/>
+                                </group>
+                                <group string="OneDrive Auth">
+                                    <field name="code"/>
+                                    <field name="access_token"/>
+                                    <field name="refresh_token"/>
+                                    <field name="token_expiry"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Drive Creds">
+                                    <label for="drive_user_id" invisible="not access_token"/>
+                                    <div class="o_row" invisible="not access_token">
+                                        <field name="drive_user_id"/>
+                                        <button name="get_user_id" string="Get User ID" type="object"
+                                                class="btn btn-primary"/>
+                                    </div>
+
+                                    <label for="folder_name" invisible="not access_token or not drive_user_id"/>
+                                    <div class="o_row" invisible="not access_token or not drive_user_id">
+                                        <field name="folder_name"/>
+                                        <button name="check_folders" string="Check Folders" type="object"
+                                                class="btn btn-primary"/>
+                                    </div>
+
+                                    <field name="drive_id"/>
+
+                                    <label for="folder_id" invisible="not access_token or not drive_id"/>
+                                    <div class="o_row" invisible="not access_token">
+                                        <field name="folder_id"/>
+                                        <button name="get_folder_info" string="Folder Info" type="object"
+                                                class="btn btn-primary"/>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="History" name="one_drive_history_ids">
+                            <field name="one_drive_history_ids">
+                                <list decoration-danger="status == 'error'" decoration-success="status != 'error'" >
+                                    <field name="file_name"/>
+                                    <field name="status"/>
+                                    <field name="error"/>
+                                    <field name="one_drive_config_id" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="onedrive_configure_action" model="ir.actions.act_window">
+        <field name="name">OneDrive Configuration</field>
+        <field name="res_model">one_drive.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{
+                    'search_default_active': 1,
+                    'default_active': 1,
+                }
+        </field>
+
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No OneDrive Configuration!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="onedrive_menu_root" name="One Drive Configuration"
+              parent="base.menu_custom" sequence="2"/>
+    <menuitem id="onedrive_configure_menu" parent="onedrive_menu_root"
+              name="One Drive Configuration"
+              action="onedrive_configure_action"/>
+</odoo>
